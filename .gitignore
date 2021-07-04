@@ -342,4 +342,4 @@ healthchecksdb
 bin
 obj
 packages
-.vs
+.vs/
