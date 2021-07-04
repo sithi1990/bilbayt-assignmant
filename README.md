@@ -18,5 +18,6 @@ This application is developed by following technologies:
 ### How to Debug locally
 
 1. Install CosmosDB emulator and start emulator.
+2. Replace "SendGrid:ApiKey" value in appsettings.json file of Assignment.Web project with the API key sent to you through StackOverflow private message.
 3. Set "Assignment.Web" project as startup project. 
 4. Run the application code in Debug mode.
