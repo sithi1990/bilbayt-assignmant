@@ -19,4 +19,5 @@ This application is developed by following technologies:
 
 1. Install CosmosDB emulator and start emulator.
 2. Run "npm install" command from "Assignment.Web/ClientApp" folder.
-3. Run the application code in Debug mode.
+3. Set "Assignment.Web" project as startup project. 
+4. Run the application code in Debug mode.
