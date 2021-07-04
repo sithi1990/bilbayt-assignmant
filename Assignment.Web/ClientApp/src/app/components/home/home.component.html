@@ -1,0 +1,15 @@
+<mat-progress-bar *ngIf="uploading" mode="indeterminate"></mat-progress-bar>
+<div class="container">
+
+  <div class="row" >
+    <div class="text-center">
+      <mat-card>
+        <p class="add-margin primary-color">User Profile</p>
+        <mat-list *ngIf="user">
+          <mat-list-item> Full Name:  {{user.fullName}}</mat-list-item>
+        </mat-list>
+      </mat-card>
+    </div>
+  </div>
+
+</div>
