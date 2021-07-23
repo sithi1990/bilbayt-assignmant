@@ -7,9 +7,6 @@
     <IsPackable>false</IsPackable>
     <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
-    <!-- Set this to true if you enable server-side prerendering -->
-    <BuildServerSideRenderer>false</BuildServerSideRenderer>
-    <UserSecretsId>fbd8f232-db2a-4554-9502-154066295fc8</UserSecretsId>
     <Configurations>Debug;Release;NSwag</Configurations>
   </PropertyGroup>
 
@@ -34,40 +31,9 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
-    <Compile Remove="ClientApp\src\app\services\**" />
-    <Compile Remove="ClientApp\src\app\shared\**" />
-    <Compile Remove="ClientApp\src\core\**" />
-    <Compile Remove="ClientApp\src\shared\**" />
     <Content Remove="$(SpaRoot)**" />
-    <Content Remove="ClientApp\src\app\services\**" />
-    <Content Remove="ClientApp\src\app\shared\**" />
-    <Content Remove="ClientApp\src\core\**" />
-    <Content Remove="ClientApp\src\shared\**" />
-    <EmbeddedResource Remove="ClientApp\src\app\services\**" />
-    <EmbeddedResource Remove="ClientApp\src\app\shared\**" />
-    <EmbeddedResource Remove="ClientApp\src\core\**" />
-    <EmbeddedResource Remove="ClientApp\src\shared\**" />
     <None Remove="$(SpaRoot)**" />
-    <None Remove="ClientApp\src\app\services\**" />
-    <None Remove="ClientApp\src\app\shared\**" />
-    <None Remove="ClientApp\src\core\**" />
-    <None Remove="ClientApp\src\shared\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="ClientApp\src\app\core\helpers\error.interceptor.ts" />
-    <None Remove="ClientApp\src\tsconfig.app.json" />
-    <None Remove="ClientApp\src\tsconfig.server.json" />
-    <None Remove="ClientApp\src\tsconfig.spec.json" />
-    <None Remove="ClientApp\tsconfig.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="ClientApp\src\tsconfig.app.json" />
-    <Content Include="ClientApp\src\tsconfig.server.json" />
-    <Content Include="ClientApp\src\tsconfig.spec.json" />
-    <Content Include="ClientApp\tsconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -75,11 +41,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\core\helpers\error.interceptor.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\src\assets\" />
     <Folder Include="wwwroot\api\" />
   </ItemGroup>
 
@@ -115,13 +76,11 @@
   <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build --prod" />
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr --prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
 
     <!-- Include the newly-built files in the publish output -->
     <ItemGroup>
-      <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
-      <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
+      <DistFiles Include="$(SpaRoot)build\**; $(SpaRoot)build-ssr\**" />
       <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
         <RelativePath>%(DistFiles.Identity)</RelativePath>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

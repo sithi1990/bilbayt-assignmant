@@ -60,7 +60,7 @@
       "moduleName": "",
       "namespace": "",
       "typeScriptVersion": 2.7,
-      "template": "Angular",
+      "template": "Fetch",
       "promiseType": "Promise",
       "httpClass": "HttpClient",
       "useSingletonProvider": true,

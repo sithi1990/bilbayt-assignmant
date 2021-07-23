@@ -19,6 +19,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Assignment.Infrastructure.Utility.Notification;
 using Assignment.Application.Common.Behaviours;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 
 namespace Assignment.Web
 {
@@ -82,7 +83,7 @@ namespace Assignment.Web
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/dist/browser";
+                configuration.RootPath = "ClientApp/build";
             });
 
             JsonConvert.DefaultSettings = () => new JsonSerializerSettings
@@ -156,7 +157,7 @@ namespace Assignment.Web
                 spa.Options.SourcePath = "ClientApp";
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
 
